@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import {connect} from "react-redux"
+
 import {
     ListItem,
     ListInfo,
@@ -8,12 +9,10 @@ import {
 class List extends Component{
     render(){
         const list = this.props;
-        console.log(list)
         return(
            <div>
                {
-
-                   this.props.articleList.map((item)=>(
+                   list.articleList.map((item)=>(
                        <ListItem key={item.get("id")}>
                             <img className="pic" src={item.get("imgUrl")} alt=""/>
                            <ListInfo>
@@ -25,11 +24,10 @@ class List extends Component{
                    )
                }
 
-
-
            </div>
         )
     }
+
 }
 const mapState=(state)=>({
     articleList:state.getIn(["home","articleList"])

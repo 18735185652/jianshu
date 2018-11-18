@@ -5,8 +5,6 @@ export const HomeWrapper = styled.div`
     margin:0 auto;
     height: auto;
     overflow: hidden;
-    
-
 `
 export const HomeLeft = styled.div`
     float: left;
@@ -17,8 +15,6 @@ export const HomeLeft = styled.div`
       width: 625px;
       height: 270px;
     }
-    
-
 `
 export const HomeRight = styled.div`
     width: 280px;
@@ -36,8 +32,6 @@ export const TopocWrapper = styled.div`
     border-bottom: 1px solid #dcdcdc;
     
     //background-color:red;
-
-
 `
 export const TopicItem = styled.div`
    float:left;
@@ -72,8 +66,6 @@ export const ListItem = styled.div`
     float: right;
     border-radius: 10px;
   }
-
-
 `
 
 export const ListInfo = styled.div`

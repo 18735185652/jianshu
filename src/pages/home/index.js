@@ -3,9 +3,12 @@ import Topic from "./components/Topic";
 import Recommend from "./components/Recommend"
 import List from "./components/List"
 import Writer from "./components/Writer"
-import {HomeWrapper,HomeLeft,HomeRight} from "./style"
+import {HomeWrapper,HomeLeft,HomeRight} from "./style";
+import {connect} from "react-redux"
+import {actionCreators} from "./store"
 
-export default class Home extends Component{
+
+ class Home extends Component{
     render(){
         return(
                 <HomeWrapper>
@@ -22,4 +25,13 @@ export default class Home extends Component{
                 </HomeWrapper>
         )
     }
+    componentDidMount(){
+        this.props.changeHomeData();
+    }
 }
+const mapDispatch =(dispatch)=>({
+    changeHomeData(){
+        dispatch(actionCreators.getHomeInfo())
+    }
+})
+export default connect(null,mapDispatch)(Home)

@@ -34,15 +34,11 @@ class Header extends Component{
         } = this.props;
         const pageList = [];
         const newList = list.toJS();
-
         if(newList.length){
-
             for(let i = (page - 1)*10;i<page*10;i++){
-
                 pageList.push(<SearchInfoItem key={i} > {newList[i]} </SearchInfoItem>)
             }
         }
-
         if(mouseIn||focused){
             return (
                 <SearchInfo
@@ -66,7 +62,7 @@ class Header extends Component{
         }
     }
     render(){
-         const {focused,handleInputFocus,handleInputBlur} = this.props;
+         const {focused,handleInputFocus,handleInputBlur,list} = this.props;
         return (
             <HeaderWrapper>
                 <Logo/>
@@ -85,10 +81,9 @@ class Header extends Component{
                         >
                             <NavSearch
                                 className={focused ? "focused" :""}
-                                onFocus={handleInputFocus}
+                                onFocus={()=>handleInputFocus(list)}
                                 onBlur = {handleInputBlur}
                             >
-
                             </NavSearch>
                         </CSSTransition>
                         <i className={focused?"iconfont zoom focused": 'iconfont zoom'}>&#xe624;</i>
@@ -122,8 +117,9 @@ const mapStateToProps = (state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
      return {
-         handleInputFocus(){
-             dispatch(actionCreators.getList())
+         handleInputFocus(list){
+             /*  优化请求 */
+             list.size <= 0 && dispatch(actionCreators.getList())
              dispatch(actionCreators.searchFocus())
          },
          handleInputBlur(){
