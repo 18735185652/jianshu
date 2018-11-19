@@ -7,6 +7,7 @@ import Header from "./common/header";
 import {Provider} from "react-redux";
 import Home from "./pages/home"
 import Detail from "./pages/detail"
+import Login from "./pages/login"
 import store from "./store/index";
 
 export default class App extends Component{
@@ -14,11 +15,12 @@ export default class App extends Component{
         return (
             <Provider store={store}>
                 <div>
-                   <Header/>
                     <BrowserRouter>
                         <div>
-                            <Route exact path="/" component={Home}></Route>
-                            <Route exact path="/detail" component={Detail}></Route>
+                            <Header/>
+                            <Route exact path = "/" component = { Home }></Route>
+                            <Route exact path = "/detail/:id" component = { Detail }></Route>
+                            <Route path='/login' exact component={Login}></Route>
                         </div>
                     </BrowserRouter>
                 </div>
