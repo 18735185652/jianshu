@@ -129,7 +129,6 @@ const mapDispatchToProps=(dispatch)=>{
              dispatch(actionCreators.mouseEnter())
          },
          handleMouseLeave(){
-             console.log(11111)
              dispatch(actionCreators.mouseLeave())
          },
          handleChangePage(page,totalPage,spin){
@@ -141,7 +140,7 @@ const mapDispatchToProps=(dispatch)=>{
                  originAngle=0;
              }
              spin.style.transform="rotate("+(originAngle+360)+"deg)"
-             if(page<totalPage){
+             if(page < totalPage){
                  dispatch(actionCreators.changePage(page+1))
              }else{
                  dispatch(actionCreators.changePage(1));

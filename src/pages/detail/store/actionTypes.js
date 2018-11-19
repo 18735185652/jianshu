@@ -1,0 +1,1 @@
+export const GET_DETAIL_STATE = "detail/GET_DETAIL_STATE";
