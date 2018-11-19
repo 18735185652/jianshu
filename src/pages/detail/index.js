@@ -8,9 +8,12 @@ import {
 } from "./style"
  class Detail extends Component{
     render(){
+        console.log(this.props)
         return(
+
             <div>
                 <DetailWrapper>
+
                     <Header>{ this.props.title }</Header>
                     <Content dangerouslySetInnerHTML={{__html:this.props.content}} />
                 </DetailWrapper>
