@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_DETAIL_STATE} from "./actionTypes"
+import {GET_DETAIL_STATE} from "./actionTypes";
 const initDetail = (result)=>({
     type:GET_DETAIL_STATE,
     data:result.content,
