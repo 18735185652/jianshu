@@ -1,6 +1,8 @@
 import React,{Component} from "react";
 import {connect} from "react-redux"
+import { Link } from 'react-router-dom';
 import  {actionCreators}  from "./store";
+import  {actionCreators as loginActioncreators}  from "../../pages//login/store";
 import {CSSTransition} from "react-transition-group"
 import {
     HeaderWrapper,
@@ -62,14 +64,18 @@ class Header extends Component{
         }
     }
     render(){
-         const {focused,handleInputFocus,handleInputBlur,list} = this.props;
+         const {focused,handleInputFocus,handleInputBlur,list,login} = this.props;
+
         return (
             <HeaderWrapper>
                 <Logo/>
                 <Nav>
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
-                    <NavItem className="right">登录</NavItem>
+                    {
+                        login ? <NavItem className="right" onClick={this.props.logout}>退出</NavItem> :
+                            <Link to='/login'><NavItem className='right'>登陆</NavItem></Link>
+                    }
                     <NavItem className="right">
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
@@ -89,22 +95,20 @@ class Header extends Component{
                         <i className={focused?"iconfont zoom focused": 'iconfont zoom'}>&#xe624;</i>
                         {this.getListArea()}
                     </SearchWrapper>
-
                 </Nav>
                 <Addition>
-                    <Button className="writting">
-                        <i className="iconfont">&#xe61b;</i>
-                        写文章
-                    </Button>
+                    <Link to={"/write"}>
+                        <Button className="writting">
+                            <i className="iconfont">&#xe61b;</i>
+                            写文章
+                        </Button>
+                    </Link>
                     <Button className="reg">注册</Button>
                 </Addition>
             </HeaderWrapper>
         )
     }
 }
-
-
-
 const mapStateToProps = (state)=>{
      return {
          focused:state.getIn(["header","focused"]),
@@ -112,6 +116,7 @@ const mapStateToProps = (state)=>{
          page:state.getIn(["header","page"]),
          mouseIn:state.getIn(["header","mouseIn"]),
          totalPage:state.getIn(["header","totalPage"]),
+         login:state.getIn(["login","login"])
             //state.get("header").get("focused")
      }
 }
@@ -146,6 +151,9 @@ const mapDispatchToProps=(dispatch)=>{
                  dispatch(actionCreators.changePage(1));
              }
 
+         },
+         logout(){
+            dispatch(loginActioncreators.logout());
          }
      }
 }

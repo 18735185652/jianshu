@@ -8,7 +8,6 @@ import {
 } from "./style"
  class Detail extends Component{
     render(){
-        console.log(this.props)
         return(
 
             <div>
@@ -21,7 +20,7 @@ import {
         )
     }
     componentDidMount(){
-        this.props.getDetail()
+        this.props.getDetail(this.props.match.params.id)
     }
 }
 const mapStateToProps = (state)=>({
@@ -29,8 +28,8 @@ const mapStateToProps = (state)=>({
     content:state.getIn(["detail","content"])
 })
 const mapDispatchToProps = (dispatch)=>({
-    getDetail(){
-        dispatch(actionCreators.getDetailState())
+    getDetail(id){
+        dispatch(actionCreators.getDetailState(id))
     }
 })
 

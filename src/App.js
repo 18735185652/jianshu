@@ -5,20 +5,23 @@ import {
 } from "react-router-dom";
 import Header from "./common/header";
 import {Provider} from "react-redux";
-import Home from "./pages/home"
-import Detail from "./pages/detail"
+import Home from "./pages/home";
+import Detail from "./pages/detail";
+import Login from "./pages/login";
+import Write from "./pages/write";
 import store from "./store/index";
-
 export default class App extends Component{
     render(){
         return (
             <Provider store={store}>
                 <div>
-                   <Header/>
                     <BrowserRouter>
                         <div>
+                            <Header/>
                             <Route exact path = "/" component = { Home }></Route>
-                            <Route exact path = "/detail" component = { Detail }></Route>
+                            <Route exact path = "/detail/:id" component = { Detail }></Route>
+                            <Route path='/write' exact component={Write}></Route>
+                            <Route path='/login' exact component={Login}></Route>
                         </div>
                     </BrowserRouter>
                 </div>
